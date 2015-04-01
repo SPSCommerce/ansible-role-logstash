@@ -7,7 +7,7 @@
   register: ls_installed
 
 - include: remove.yml
-  when: (logstash_remove_old and not ls_installed.stat.exists) or logstash_state == 'absernt'
+  when: (logstash_remove_old and not ls_installed.stat.exists) or logstash_state == 'absent'
 
 - include: s3_install.yml
   when: not ls_installed.stat.exists and logstash_state == 'present'
