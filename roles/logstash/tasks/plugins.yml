@@ -5,3 +5,9 @@
     JAVA_HOME: "{{ logstash_java_home }}"
   with_items: logstash_plugins
   when: logstash_plugins is defined
+
+- name: Updating plugins
+  shell: sudo -E -u logstash /opt/logstash-{{ logstash_version }}/bin/plugin update chdir=/opt/logstash-{{ logstash_version }}
+  environment:
+    JAVA_HOME: /opt/java/java8
+  when: logstash_plugins_update
